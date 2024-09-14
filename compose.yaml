@@ -1,0 +1,12 @@
+services:
+  front:
+    build: ./docker/front
+    tty: true
+    stdin_open: true
+    volumes:
+      - ./front:/app
+      - ./docker/front/entrypoint.sh:/entrypoint.sh
+      - ./docker/front/command.sh:/command.sh
+    ports:
+      - ${REACT_PORT:-5173}:5173
+    command: /command.sh
